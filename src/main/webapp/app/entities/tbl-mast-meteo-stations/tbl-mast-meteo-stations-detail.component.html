@@ -28,36 +28,42 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
 
-            <button type="button"
+            <!-- button type="button"
                     [routerLink]="['/tbl-mast-meteo-stations', tblMastMeteoStations.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
-            </button>
+            </button -->
         </div>
     </div>
 
     <div>
         <p style="color: white;">.</p>
     </div>     
+    <div >
+        <canvas id="myChart" width="800" height="300"></canvas>
+    </div>
+    <div>
+        <p style="color: white;">.</p>
+    </div>        
 
     <div class="table-responsive" id="entities" *ngIf="dataSeries?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col" ><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <!-- th scope="col" ><span>ID</span> <fa-icon icon="sort"></fa-icon></th -->
                     <th scope="col" ><span>Cod Station</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Ts</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Temp</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Wind</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Prec</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Pres</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Hum</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Date time</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Temperatura ºC</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Wind km/h</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Precipitation mm</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Presure hPa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Humidity %</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let dataSerie of dataSeries ;trackBy: trackId">
-                    <td><a [routerLink]="['/data-serie', dataSerie.id, 'view']">{{ dataSerie.id }}</a></td>
+                    <!-- td><a [routerLink]="['/data-serie', dataSerie.id, 'view']">{{ dataSerie.id }}</a></td -->
                     <td>{{ dataSerie.codStation }}</td>
                     <td>{{ dataSerie.ts }}</td>
                     <td>{{ dataSerie.temp }}</td>

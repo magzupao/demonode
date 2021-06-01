@@ -30,6 +30,7 @@ cd codechallengemarco/
 
 3. En otra terminal se ubica en el proyecto raiz - codechallengemarco  
    npm install  
+   npm install -g yo@latest  
    npm start
 
 ![](./imagen/imagen2.png)
@@ -55,3 +56,17 @@ cd codechallengemarco/
 ![](./imagen/imagen7.png)
 
 ![](./imagen/imagen8.png)
+
+9. Agregamos una grafica usando chartjs, visualizamos todas las variables:
+
+![](./imagen/imagen9.png)
+
+La grafica se ve con margen en el centro muy distaciando por la diferencia de valores que hay entre Precipitation y Presure.
+
+Si eliminamos estos datos del reporte, la imagen mejora:
+
+![](./imagen/imagen10.png)
+
+Si solo dejamos dos variables la imagen es mejor:
+
+![](./imagen/imagen11.png)

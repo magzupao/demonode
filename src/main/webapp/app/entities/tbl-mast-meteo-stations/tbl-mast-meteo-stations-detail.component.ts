@@ -9,6 +9,8 @@ import { ITblMastMeteoStations } from 'app/shared/model/tbl-mast-meteo-stations.
 import { IDataSerie } from 'app/shared/model/data-serie.model';
 import { DataSerieService } from 'app/entities/data-serie/data-serie.service';
 
+import * as Chart from 'chart.js';
+
 @Component({
   selector: 'jhi-tbl-mast-meteo-stations-detail',
   templateUrl: './tbl-mast-meteo-stations-detail.component.html'
@@ -22,6 +24,14 @@ export class TblMastMeteoStationsDetailComponent implements OnInit {
   predicate: string;
   ascending: boolean;
   datos?: string[] | undefined;
+
+  canvas: any;
+  ctx: any;
+  labels: any = [];
+  dataCases: any = {
+    chart1: [],
+    chart2: []
+  };
 
   constructor(protected dataSerieService: DataSerieService, protected parseLinks: JhiParseLinks, protected activatedRoute: ActivatedRoute) {
     this.dataSeries = [];
@@ -44,6 +54,7 @@ export class TblMastMeteoStationsDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ tblMastMeteoStations }) => (this.tblMastMeteoStations = tblMastMeteoStations));
     this.loadAll();
+    this.createLineChart(this.labels, this.dataCases, 'myChart');
   }
 
   previousState(): void {
@@ -69,7 +80,54 @@ export class TblMastMeteoStationsDetailComponent implements OnInit {
     if (data) {
       for (let i = 0; i < data.length; i++) {
         this.dataSeries.push(data[i]);
+        this.labels.push(data[i]['ts']);
+        this.dataCases.chart1.push(data[i]['temp']);
+        this.dataCases.chart2.push(data[i]['wind']);
       }
     }
+  }
+
+  private createLineChart(labelss: any, dataCases: any, chartId: string): void {
+    this.canvas = document.getElementById(chartId);
+    this.ctx = this.canvas.getContext('2d');
+
+    const chart = new Chart(this.ctx, {
+      type: 'line',
+      data: {
+        labels: labelss,
+        datasets: [
+          {
+            label: 'Temperatura ºC',
+            data: dataCases.chart1,
+            backgroundColor: '#ffbb33',
+            borderColor: '#ffbb33',
+            fill: false,
+            borderWidth: 2
+          },
+          {
+            label: 'Wind km/h',
+            data: dataCases.chart2,
+            backgroundColor: '#ff4444',
+            borderColor: '#ff4444',
+            fill: false,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'First chart'
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: true
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        }
+      }
+    });
   }
 }
