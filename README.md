@@ -114,25 +114,3 @@ Se instala en package.json la versión a utilizar:
 
 7. El fichero ts es el que implementa la lógica, al ver el detalle de una estación, filtra los datos correspondientes a esa estación para después mostrarlo en una tabla y en la gráfica.
 
-## PROBLEMAS
-
-Al momento de realizar el deploy del front ejecutando el comando: npm start da un error en el archivo “tbl-mast-meteo-stations-detail.component.ts” , el mensaje indica this.datos[1] esta indefinido:
-
-this.datos = this.tblMastMeteoStations?.name?.split(' ');  
-const strId = this.datos[1];  
-const id = Number(strId);
-
-El nombre de la estación tiene este formato “Meteo 1”, bien hago un Split para poder recuperar el valor “1”, pero no sé porque da error.  
-Para corregir el error, se pueda compilar y se pueda desplegar, realizo lo siguiente:
-
-this.datos = this.tblMastMeteoStations?.name?.split(' ');  
-//const strId = this.datos[1];  
-const id = Number(1);
-
-Comento la variable strId y en Number defindo el valor 1  
-Una vez compilado dejo el Código tal cual y la funcionalidad cumple de filtrar los datos por cada estación:  
-Este tipo de errores en JavaScript tan simples y sencillas a veces te llevan horas saber porque pasa esto, bueno es parte del trabajo.
-
-¿Porque usaba un split en el name?, porque solo tenía esa opción de poder recuperar el numero de la estación, el id de la tabla era de tipo alfanumérico al momento de crearse, tenía que investigar como configurar para que sea INTEGER a pesar de poner en el script Integer, me lo creaba como caracteres.
-
-Por ultimo decir que me falto tiempo para poder utilizar la segunda tabla de las variables.
