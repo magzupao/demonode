@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Data Series</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-data-serie" [routerLink]="['/data-serie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Data Serie
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="dataSeries?.length === 0">
+        <span>No dataSeries found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="dataSeries?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codStation"><span>Cod Station</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ts"><span>Ts</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="temp"><span>Temp</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="wind"><span>Wind</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prec"><span>Prec</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pres"><span>Pres</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="hum"><span>Hum</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let dataSerie of dataSeries ;trackBy: trackId">
+                    <td><a [routerLink]="['/data-serie', dataSerie.id, 'view']">{{ dataSerie.id }}</a></td>
+                    <td>{{ dataSerie.codStation }}</td>
+                    <td>{{ dataSerie.ts }}</td>
+                    <td>{{ dataSerie.temp }}</td>
+                    <td>{{ dataSerie.wind }}</td>
+                    <td>{{ dataSerie.prec }}</td>
+                    <td>{{ dataSerie.pres }}</td>
+                    <td>{{ dataSerie.hum }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/data-serie', dataSerie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/data-serie', dataSerie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(dataSerie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

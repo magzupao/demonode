@@ -1,0 +1,16 @@
+entity TblMastMeteoStations {
+  id Integer required,
+  name String required,
+  longitude BigDecimal required,
+  latitude BigDecimal required
+}
+
+entity TblMastMeteoVariables {
+  id Integer required,
+  name String required,
+  unit String required
+}
+
+dto all with mapstruct
+paginate TblMastMeteoStations, TblMastMeteoVariables with pagination
+service all with serviceClass

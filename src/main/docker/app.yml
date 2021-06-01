@@ -1,0 +1,8 @@
+version: '2'
+services:
+  codechallengemarco-app:
+    build: ../../..
+    container_name: codechallengemarco-app
+    environment:
+    ports:
+      - 8081:8081

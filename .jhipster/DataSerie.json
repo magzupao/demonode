@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "codStation",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ts",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "temp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "wind",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prec",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pres",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hum",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20210531222414",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "data_serie",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tblMastMeteoStations">
+            <h2><span>Tbl Mast Meteo Stations</span> {{ tblMastMeteoStations.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{ tblMastMeteoStations.name }}</span>
+                </dd>
+                <dt><span>Longitude</span></dt>
+                <dd>
+                    <span>{{ tblMastMeteoStations.longitude }}</span>
+                </dd>
+                <dt><span>Latitude</span></dt>
+                <dd>
+                    <span>{{ tblMastMeteoStations.latitude }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tbl-mast-meteo-stations', tblMastMeteoStations.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <p style="color: white;">.</p>
+    </div>     
+
+    <div class="table-responsive" id="entities" *ngIf="dataSeries?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Cod Station</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Ts</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Temp</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Wind</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Prec</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Pres</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span>Hum</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dataSerie of dataSeries ;trackBy: trackId">
+                    <td><a [routerLink]="['/data-serie', dataSerie.id, 'view']">{{ dataSerie.id }}</a></td>
+                    <td>{{ dataSerie.codStation }}</td>
+                    <td>{{ dataSerie.ts }}</td>
+                    <td>{{ dataSerie.temp }}</td>
+                    <td>{{ dataSerie.wind }}</td>
+                    <td>{{ dataSerie.prec }}</td>
+                    <td>{{ dataSerie.pres }}</td>
+                    <td>{{ dataSerie.hum }}</td>
+                    <td class="text-right">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+
+
+</div>

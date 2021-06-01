@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dataSerie">
+            <h2><span>Data Serie</span> {{ dataSerie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cod Station</span></dt>
+                <dd>
+                    <span>{{ dataSerie.codStation }}</span>
+                </dd>
+                <dt><span>Ts</span></dt>
+                <dd>
+                    <span>{{ dataSerie.ts }}</span>
+                </dd>
+                <dt><span>Temp</span></dt>
+                <dd>
+                    <span>{{ dataSerie.temp }}</span>
+                </dd>
+                <dt><span>Wind</span></dt>
+                <dd>
+                    <span>{{ dataSerie.wind }}</span>
+                </dd>
+                <dt><span>Prec</span></dt>
+                <dd>
+                    <span>{{ dataSerie.prec }}</span>
+                </dd>
+                <dt><span>Pres</span></dt>
+                <dd>
+                    <span>{{ dataSerie.pres }}</span>
+                </dd>
+                <dt><span>Hum</span></dt>
+                <dd>
+                    <span>{{ dataSerie.hum }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/data-serie', dataSerie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-data-serie-heading">Create or edit a Data Serie</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codStation">Cod Station</label>
+                    <input type="number" class="form-control" name="codStation" id="field_codStation"
+                           formControlName="codStation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ts">Ts</label>
+                    <input type="text" class="form-control" name="ts" id="field_ts"
+                           formControlName="ts"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_temp">Temp</label>
+                    <input type="text" class="form-control" name="temp" id="field_temp"
+                           formControlName="temp"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_wind">Wind</label>
+                    <input type="text" class="form-control" name="wind" id="field_wind"
+                           formControlName="wind"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prec">Prec</label>
+                    <input type="text" class="form-control" name="prec" id="field_prec"
+                           formControlName="prec"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pres">Pres</label>
+                    <input type="text" class="form-control" name="pres" id="field_pres"
+                           formControlName="pres"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hum">Hum</label>
+                    <input type="text" class="form-control" name="hum" id="field_hum"
+                           formControlName="hum"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
